@@ -24,11 +24,7 @@ export default function Home() {
             <code className={styles.code}>src/pages/index.tsx</code>
           </p>
           <div>
-            <a
-              href="https://vercel.com?utm_source=typescript-nextjs-starter"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://vercel.com?utm_source=typescript-nextjs-starter" target="_blank" rel="noopener noreferrer">
               By{' '}
               <Image
                 src="/vercel.svg"
@@ -43,22 +39,9 @@ export default function Home() {
         </div>
 
         <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+          <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
           <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
+            <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
           </div>
         </div>
 
@@ -72,9 +55,7 @@ export default function Home() {
             <h2 className={inter.className}>
               Docs <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
+            <p className={inter.className}>Find in-depth information about Next.js features and&nbsp;API.</p>
           </a>
 
           <a
@@ -86,9 +67,7 @@ export default function Home() {
             <h2 className={inter.className}>
               Learn <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
+            <p className={inter.className}>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
           </a>
 
           <a
@@ -100,9 +79,7 @@ export default function Home() {
             <h2 className={inter.className}>
               Templates <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
+            <p className={inter.className}>Discover and deploy boilerplate example Next.js&nbsp;projects.</p>
           </a>
 
           <a
@@ -114,10 +91,7 @@ export default function Home() {
             <h2 className={inter.className}>
               Deploy <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
+            <p className={inter.className}>Instantly deploy your Next.js site to a shareable URL with&nbsp;Vercel.</p>
           </a>
         </div>
       </main>

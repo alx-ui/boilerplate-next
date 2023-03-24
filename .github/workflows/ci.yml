@@ -1,40 +1,29 @@
-name: Check PR
+name: Semantic Versioning
 
-on: [pull_request]
-
+on:
+  pull_request:
+    branches:
+      - master
+      - dependabot/*
+  push:
+    branches:
+      - master
 jobs:
-  run-ci:
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    name: Run Type Check & Linters
+  publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
-
-      - name: Set up Node
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-          cache: 'pnpm'
-
+          node-version: 16
       - name: Install dependencies
-        run: pnpm install
-
-      - name: Check types
-        run: pnpm type-check
-
-      - name: Check linting
-        run: pnpm lint
-
-      - name: Check commits messages
-        uses: wagoid/commitlint-github-action@v5
+        run: yarn
+      - name: Fix Lint
+        run: yarn lint
+      - name: Build app
+        run: yarn build
+      - name: Semantic Versioning
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release

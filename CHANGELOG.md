@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/alxUI/boilerplate-next/compare/v1.0.0...v1.1.0) (2023-12-21)
+
+
+### Features
+
+* update depencies and add new files ([36521f6](https://github.com/alxUI/boilerplate-next/commit/36521f6ee03fb3a0a4cf950ee0ab9eeb10ca85fa))
+
 # 1.0.0 (2023-03-24)
 
 

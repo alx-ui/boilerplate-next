@@ -29,26 +29,26 @@
     ]
   },
   "dependencies": {
-    "next": "14.0.4",
+    "next": "14.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "18.4.3",
-    "@commitlint/config-conventional": "18.4.3",
-    "@ialexanderbrito/eslint-config": "2.0.0",
+    "@commitlint/cli": "18.4.4",
+    "@commitlint/config-conventional": "18.4.4",
+    "@ialexanderbrito/eslint-config": "2.1.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/node": "20.10.5",
-    "@types/react": "18.2.45",
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
-    "autoprefixer": "10.4.16",
+    "autoprefixer": "10.4.17",
     "eslint": "8.56.0",
     "husky": "8.0.3",
     "lint-staged": "15.2.0",
-    "postcss": "8.4.32",
+    "postcss": "8.4.33",
     "semantic-release": "^22.0.12",
-    "tailwindcss": "3.4.0",
+    "tailwindcss": "3.4.1",
     "typescript": "5.3.3"
   }
 }

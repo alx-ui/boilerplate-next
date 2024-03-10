@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/alxUI/boilerplate-next/compare/v1.1.0...v2.0.0) (2024-03-10)
+
+
+### Features
+
+* update dependencies and new version node v20 ([ce7ce1c](https://github.com/alxUI/boilerplate-next/commit/ce7ce1c31a27ba2f3f4d506b04e62c3e8e1a79a4))
+* update version dependencies ([95b46e7](https://github.com/alxUI/boilerplate-next/commit/95b46e70d1aaf66424e5dac36a95b81d92024bb6))
+* update version node v20 ([524bcf0](https://github.com/alxUI/boilerplate-next/commit/524bcf0b662c162d07fb9a7982afa730d7ff180d))
+
+
+### BREAKING CHANGES
+
+* update version node v20 and update dependencies
+* update dependencies and new version node v20
+
 # [1.1.0](https://github.com/alxUI/boilerplate-next/compare/v1.0.0...v1.1.0) (2023-12-21)
 
 

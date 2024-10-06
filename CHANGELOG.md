@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/alx-ui/boilerplate-next/compare/v2.0.0...v2.1.0) (2024-10-06)
+
+
+### Features
+
+* update dependencies ([bbe737f](https://github.com/alx-ui/boilerplate-next/commit/bbe737f0fbb4dc4d844d951f66d2d09cb8d18a04))
+
 # [2.0.0](https://github.com/alxUI/boilerplate-next/compare/v1.1.0...v2.0.0) (2024-03-10)
 
 

@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/alx-ui/[secure]-next/compare/v3.0.0...v3.1.0) (2026-11-26)
+
+
+### Features
+
+* **ui:** redesign starter page in Next.js grid style ([3a7c4fb](https://github.com/alx-ui/[secure]-next/commit/3a7c4fb46897766a9056990a18bddf8c337af42a))
+
 # [3.0.0](https://github.com/alx-ui/[secure]-next/compare/v2.1.0...v3.0.0) (2026-11-26)
 
 

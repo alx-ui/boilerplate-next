@@ -1,0 +1,14 @@
+---
+description: Core project guidelines for boilerplate-next (Next.js 16, React 19, Tailwind CSS v4, ESLint 10, Prettier 3)
+alwaysApply: true
+---
+
+Follow `AGENTS.md` at the repository root as the single source of truth for architecture, scripts, and conventions.
+
+## Quick Guardrails
+
+- **Stack:** Next.js 16 (App Router in `src/app`), React 19, TypeScript 6 (`strict: true`), Tailwind CSS v4 (`src/app/globals.css`).
+- **Config:** Use `eslint.config.mjs` (ESLint 10 Flat Config) and `prettier.config.mjs` (both from `@ialexanderbrito/eslint-config`). Do not add legacy `.eslintrc.*`, `.prettierrc`, or `tailwind.config.*`.
+- **Package Manager:** Use `yarn` (not npm/pnpm) to keep `yarn.lock` consistent.
+- **Skills:** Check `.agents/skills/<skill-name>/SKILL.md` when a specialized workflow applies.
+- **Verify:** Run `yarn validate` (`type-check`, `lint`, `format:check`) and `yarn build` after changes.

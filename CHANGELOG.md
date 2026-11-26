@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/alx-ui/[secure]-next/compare/v2.1.0...v3.0.0) (2026-11-26)
+
+
+* feat!: upgrade stack to Next.js 16, React 19, Tailwind v4, and ESLint 10 ([bf689b0](https://github.com/alx-ui/[secure]-next/commit/bf689b0fa32ee21ebce95206545a08314c38a1c6))
+
+
+### Features
+
+* **agents:** add universal AI agents config, skills, and README ([8095fef](https://github.com/alx-ui/[secure]-next/commit/8095fef57621ee17c8b6eb9d33cbc267a9ddf5e3))
+
+
+### BREAKING CHANGES
+
+* requires Node.js ^22.22.1 || >=24.10.0, ESLint 10 Flat
+Config ([secure].config.mjs), and Tailwind CSS v4 (@[secure]/postcss).
+
 # [2.1.0](https://github.com/alx-ui/boilerplate-next/compare/v2.0.0...v2.1.0) (2024-10-06)
 
 

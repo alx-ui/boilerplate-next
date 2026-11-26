@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+build
+dist
+coverage
+.agents
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+CHANGELOG.md
+next-env.d.ts

@@ -1,352 +1,432 @@
-import type { CSSProperties } from 'react';
+import Image from 'next/image';
 
-const stackItems = [
-  {
-    name: 'Next.js',
-    version: '16.4',
-    detail: 'App Router, Turbopack, TypeScript config',
-    bg: 'var(--tag-blue-bg)',
-    fg: 'var(--tag-blue-fg)',
-  },
-  {
-    name: 'React',
-    version: '19.3',
-    detail: 'Server Components by default',
-    bg: 'var(--tag-green-bg)',
-    fg: 'var(--tag-green-fg)',
-  },
-  {
-    name: 'TypeScript',
-    version: '6.0',
-    detail: 'Strict mode with @/* path aliases',
-    bg: 'var(--tag-yellow-bg)',
-    fg: 'var(--tag-yellow-fg)',
-  },
-  {
-    name: 'Tailwind CSS',
-    version: '4.3',
-    detail: 'CSS-first tokens via @tailwindcss/postcss',
-    bg: 'var(--tag-red-bg)',
-    fg: 'var(--tag-red-fg)',
-  },
+const stackVersions = [
+  { label: 'Next.js', value: '16.4' },
+  { label: 'React', value: '19.3' },
+  { label: 'TypeScript', value: '6.0' },
+  { label: 'Tailwind CSS', value: '4.3' },
+  { label: 'ESLint', value: '10.15' },
+  { label: 'Prettier', value: '3.10' },
+  { label: 'Node.js', value: '24 LTS' },
 ];
 
-const commands = [
-  { cmd: 'yarn dev', desc: 'Start Next.js dev server' },
-  { cmd: 'yarn validate', desc: 'Run type-check, ESLint 10 & Prettier 3' },
-  { cmd: 'yarn build', desc: 'Create production build with Turbopack' },
-  { cmd: 'yarn commit', desc: 'Guided Conventional Commit via Commitizen' },
+const scripts = [
+  { cmd: 'yarn dev', label: 'Start local dev server' },
+  { cmd: 'yarn validate', label: 'Type-check, ESLint 10 & Prettier 3' },
+  { cmd: 'yarn build', label: 'Production build with Turbopack' },
+  { cmd: 'yarn commit', label: 'Conventional Commit via Commitizen' },
 ];
 
 const agentFiles = [
-  { file: 'AGENTS.md', role: 'Universal single source of truth' },
-  { file: 'CLAUDE.md', role: 'Claude Code entrypoint' },
-  { file: '.cursor/rules/', role: 'Always-applied Cursor guardrails' },
-  { file: '.agents/skills/', role: 'Portable Agent Skills standard' },
+  { path: 'AGENTS.md', scope: 'Universal spec' },
+  { path: 'CLAUDE.md', scope: 'Claude Code' },
+  { path: '.cursor/rules/', scope: 'Cursor IDE' },
+  { path: '.agents/skills/', scope: 'Agent Skills' },
 ];
 
-const qualityChecks = [
-  'ESLint 10 Flat Config (@ialexanderbrito/eslint-config v3)',
-  'Prettier 3 synced directly with ESLint rules',
-  'Husky v9 + lint-staged + Commitlint pre-commit hooks',
-  'Semantic Release & GitHub Actions CI ready',
-];
-
-const stagger = (index: number): CSSProperties =>
-  ({ '--index': index }) as CSSProperties;
+function Crosshair({ className }: { className: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`text-border-strong pointer-events-none absolute z-10 flex h-5 w-5 items-center justify-center font-mono text-sm leading-none select-none ${className}`}
+    >
+      +
+    </span>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="bg-editorial-dots min-h-screen">
-      <header className="border-border bg-canvas/85 sticky top-0 z-10 border-b backdrop-blur-sm">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-sm font-medium tracking-tight">
-              boilerplate-next
-            </span>
-            <span
-              className="rounded-full px-2.5 py-0.5 font-mono text-[11px] tracking-wider uppercase"
-              style={{
-                backgroundColor: 'var(--tag-green-bg)',
-                color: 'var(--tag-green-fg)',
-              }}
+    <div className="bg-bg text-fg min-h-screen">
+      <header className="border-border bg-bg/80 sticky top-0 z-30 border-b backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-[1080px] items-center justify-between px-6">
+          <div className="flex items-center gap-6">
+            <a href="#top" className="flex items-center gap-2.5">
+              <Image
+                src="/next.svg"
+                alt="Next.js"
+                width={78}
+                height={16}
+                className="dark:invert"
+                priority
+              />
+              <span className="text-border-strong select-none">/</span>
+              <span className="font-mono text-xs font-medium tracking-tight">
+                boilerplate
+              </span>
+            </a>
+
+            <nav
+              aria-label="Primary navigation"
+              className="text-fg-muted hidden items-center gap-5 text-sm md:flex"
             >
-              Next 16
-            </span>
+              <a href="#stack" className="hover:text-fg transition-colors">
+                Stack
+              </a>
+              <a href="#features" className="hover:text-fg transition-colors">
+                Features
+              </a>
+              <a href="#agents" className="hover:text-fg transition-colors">
+                AI Agents
+              </a>
+              <a href="#scripts" className="hover:text-fg transition-colors">
+                Scripts
+              </a>
+            </nav>
           </div>
 
-          <nav
-            aria-label="Primary links"
-            className="text-ink-muted flex items-center gap-6 text-sm"
-          >
-            <a
-              href="https://nextjs.org/docs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-ink transition-colors"
-            >
-              Next.js Docs
-            </a>
-            <a
-              href="https://tailwindcss.com/docs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-ink transition-colors"
-            >
-              Tailwind v4
-            </a>
+          <div className="flex items-center gap-2.5">
+            <span className="border-border bg-bg-subtle text-fg-muted hidden rounded-md border px-2.5 py-1 font-mono text-xs sm:inline-flex">
+              v3.0
+            </span>
             <a
               href="https://github.com/alx-ui/boilerplate-next"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-ink transition-colors"
+              className="border-border bg-bg hover:bg-bg-subtle inline-flex h-8 items-center rounded-md border px-3 text-xs font-medium transition-colors"
             >
               GitHub
             </a>
-          </nav>
+            <a
+              href="#scripts"
+              className="bg-btn-bg text-btn-fg hover:bg-btn-hover inline-flex h-8 items-center rounded-md px-3 text-xs font-medium transition-colors"
+            >
+              Get Started
+            </a>
+          </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-        <section className="reveal max-w-3xl" style={stagger(0)}>
-          <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span
-              className="rounded-full px-3 py-1 font-mono text-[11px] font-medium tracking-[0.06em] uppercase"
-              style={{
-                backgroundColor: 'var(--tag-blue-bg)',
-                color: 'var(--tag-blue-fg)',
-              }}
-            >
-              Production Starter
-            </span>
-            <span className="text-ink-muted font-mono text-xs">
-              Node 24 · Yarn · Zero extra UI dependencies
-            </span>
+      <main id="top" className="mx-auto max-w-[1080px] px-4 sm:px-6">
+        <section className="border-border relative mt-8 border border-dashed sm:mt-12">
+          <Crosshair className="-top-2.5 -left-2.5" />
+          <Crosshair className="-top-2.5 -right-2.5" />
+          <Crosshair className="-bottom-2.5 -left-2.5" />
+          <Crosshair className="-right-2.5 -bottom-2.5" />
+
+          <div
+            aria-hidden="true"
+            className="nextjs-hero-grid pointer-events-none absolute inset-0 opacity-70"
+          />
+
+          <div className="relative px-6 py-20 text-center sm:px-12 sm:py-28">
+            <div className="border-border bg-bg/90 text-fg-muted mb-7 inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs">
+              <span className="bg-accent-blue h-1.5 w-1.5 rounded-full" />
+              <span>Next.js 16.4 · React 19 · Tailwind CSS v4 · ESLint 10</span>
+            </div>
+
+            <h1 className="mx-auto max-w-3xl text-4xl font-semibold tracking-[-0.045em] sm:text-6xl sm:leading-[1.05]">
+              The Next.js Boilerplate for the Web
+            </h1>
+
+            <p className="text-fg-muted mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
+              Pre-configured with{' '}
+              <strong className="text-fg font-medium">
+                App Router &amp; Turbopack
+              </strong>
+              , zero-conflict{' '}
+              <strong className="text-fg font-medium">
+                ESLint 10 &amp; Prettier 3
+              </strong>
+              , automated CI/Release, and universal{' '}
+              <strong className="text-fg font-medium">
+                AI Agent instructions
+              </strong>
+              .
+            </p>
+
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="#features"
+                className="bg-btn-bg text-btn-fg hover:bg-btn-hover inline-flex h-11 items-center rounded-md px-5 text-sm font-medium transition-colors"
+              >
+                Explore Stack
+              </a>
+              <a
+                href="https://github.com/alx-ui/boilerplate-next"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-border bg-bg hover:bg-bg-subtle inline-flex h-11 items-center rounded-md border px-5 text-sm font-medium transition-colors"
+              >
+                View Repository
+              </a>
+            </div>
+
+            <div className="text-fg-muted mt-7 inline-flex items-center gap-2 font-mono text-xs">
+              <span aria-hidden="true" className="text-fg">
+                &#9650;
+              </span>
+              <span>~</span>
+              <code className="text-fg">src/app/page.tsx</code>
+              <span className="text-border-strong">|</span>
+              <code>yarn validate</code>
+            </div>
           </div>
 
-          <h1 className="font-serif text-5xl leading-[1.08] font-normal tracking-[-0.03em] sm:text-6xl">
-            A quiet, batteries-included{' '}
-            <span className="italic">foundation</span> for Next.js.
-          </h1>
-
-          <p className="text-ink-muted mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
-            Pre-configured with Next.js 16, React 19, TypeScript 6, Tailwind CSS
-            v4, ESLint 10 Flat Config, Prettier 3, and universal AI agent
-            instructions. Replace this single file whenever you are ready to
-            build.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href="https://nextjs.org/docs/app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent-bg text-accent-fg hover:bg-accent-hover inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium transition-transform active:scale-[0.98]"
-            >
-              Read App Router Docs
-              <svg
-                aria-hidden="true"
-                width="14"
-                height="14"
-                viewBox="0 0 16 16"
-                fill="none"
+          <div
+            id="stack"
+            className="border-border bg-bg/95 relative grid scroll-mt-20 grid-cols-2 border-t border-dashed sm:grid-cols-4 lg:grid-cols-7"
+          >
+            {stackVersions.map((item) => (
+              <div
+                key={item.label}
+                className="border-border flex flex-col items-center justify-center border-r border-b border-dashed px-3 py-3.5 last:border-r-0 lg:border-b-0"
               >
-                <path
-                  d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-
-            <div className="border-border bg-surface text-ink-muted inline-flex items-center gap-2 rounded-md border px-3.5 py-2 text-xs">
-              <span>Start editing</span>
-              <kbd className="border-border bg-surface-subtle text-ink rounded border px-1.5 py-0.5 font-mono text-[11px]">
-                src/app/page.tsx
-              </kbd>
-            </div>
+                <span className="text-fg-subtle text-[11px]">{item.label}</span>
+                <span className="mt-0.5 font-mono text-xs font-medium">
+                  {item.value}
+                </span>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section
-          aria-label="Boilerplate capabilities"
-          className="mt-20 grid grid-cols-1 gap-4 md:grid-cols-12"
-        >
-          <article
-            className="bento-card reveal border-border bg-surface rounded-xl border p-7 md:col-span-7"
-            style={stagger(1)}
-          >
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-sm font-medium tracking-tight">Core Stack</h2>
-              <span className="text-ink-muted font-mono text-xs">
-                4 packages
-              </span>
-            </div>
-
-            <ul className="divide-border divide-y">
-              {stackItems.map((item) => (
-                <li
-                  key={item.name}
-                  className="flex flex-col justify-between gap-2 py-3.5 first:pt-0 last:pb-0 sm:flex-row sm:items-center"
-                >
-                  <div>
-                    <span className="text-sm font-medium">{item.name}</span>
-                    <p className="text-ink-muted text-xs">{item.detail}</p>
-                  </div>
-                  <span
-                    className="w-fit rounded-full px-2.5 py-0.5 font-mono text-[11px] font-medium tracking-wider uppercase"
-                    style={{ backgroundColor: item.bg, color: item.fg }}
-                  >
-                    v{item.version}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article
-            className="bento-card reveal border-border bg-surface flex flex-col justify-between rounded-xl border p-7 md:col-span-5"
-            style={stagger(2)}
-          >
+        <section id="features" className="scroll-mt-16 py-20 sm:py-24">
+          <div className="mb-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-sm font-medium tracking-tight">
-                  Linting & Delivery
-                </h2>
-                <span
-                  className="rounded-full px-2.5 py-0.5 font-mono text-[11px] tracking-wider uppercase"
-                  style={{
-                    backgroundColor: 'var(--tag-yellow-bg)',
-                    color: 'var(--tag-yellow-fg)',
-                  }}
-                >
-                  Zero conflict
-                </span>
-              </div>
-
-              <ul className="space-y-3.5">
-                {qualityChecks.map((check) => (
-                  <li
-                    key={check}
-                    className="text-ink-muted flex items-start gap-2.5 text-sm leading-snug"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="text-ink mt-0.5 shrink-0"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M3.5 8.5L6.5 11.5L12.5 4.5"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span>{check}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="border-border mt-6 border-t pt-4">
-              <p className="text-ink-muted font-mono text-xs">
-                Single source: eslint.config.mjs + prettier.config.mjs
+              <h2 className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">
+                What&apos;s in boilerplate-next?
+              </h2>
+              <p className="text-fg-muted mt-2 text-sm sm:text-base">
+                Everything you need to start shipping production Next.js apps
+                immediately.
               </p>
             </div>
-          </article>
+            <span className="text-fg-subtle font-mono text-xs">
+              Zero extra UI dependencies
+            </span>
+          </div>
 
-          <article
-            className="bento-card reveal border-border bg-surface rounded-xl border p-7 md:col-span-5"
-            style={stagger(3)}
-          >
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-sm font-medium tracking-tight">
-                AI Agents Ready
-              </h2>
-              <span
-                className="rounded-full px-2.5 py-0.5 font-mono text-[11px] tracking-wider uppercase"
-                style={{
-                  backgroundColor: 'var(--tag-green-bg)',
-                  color: 'var(--tag-green-fg)',
-                }}
-              >
-                AAIF Spec
-              </span>
-            </div>
+          <div className="border-border relative grid grid-cols-1 border-t border-l md:grid-cols-3">
+            <Crosshair className="-top-2.5 -left-2.5" />
+            <Crosshair className="-top-2.5 -right-2.5" />
 
-            <ul className="space-y-3">
-              {agentFiles.map((entry) => (
-                <li
-                  key={entry.file}
-                  className="border-border bg-surface-subtle flex items-center justify-between gap-3 rounded-lg border px-3.5 py-2.5"
-                >
-                  <code className="font-mono text-xs font-medium">
-                    {entry.file}
-                  </code>
-                  <span className="text-ink-muted text-right text-xs">
-                    {entry.role}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <p className="text-ink-muted mt-4 text-xs">
-              Works across Antigravity, Claude Code, Cursor, OpenCode, Codex,
-              Grok, and GitHub Copilot.
-            </p>
-          </article>
-
-          <article
-            className="bento-card reveal border-border bg-surface overflow-hidden rounded-xl border md:col-span-7"
-            style={stagger(4)}
-          >
-            <div className="border-border flex items-center justify-between border-b px-5 py-3">
-              <div className="flex items-center gap-1.5" aria-hidden="true">
-                <span className="border-border bg-surface-subtle h-2.5 w-2.5 rounded-full border" />
-                <span className="border-border bg-surface-subtle h-2.5 w-2.5 rounded-full border" />
-                <span className="border-border bg-surface-subtle h-2.5 w-2.5 rounded-full border" />
-              </div>
-              <span className="text-ink-muted font-mono text-[11px]">
-                terminal — boilerplate-next
-              </span>
-              <span className="w-10" aria-hidden="true" />
-            </div>
-
-            <div className="space-y-3.5 p-7 font-mono text-xs sm:text-sm">
-              {commands.map((item) => (
-                <div
-                  key={item.cmd}
-                  className="border-border/70 flex flex-col justify-between gap-1 border-b pb-3 last:border-b-0 last:pb-0 sm:flex-row sm:items-center"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-ink-muted select-none">$</span>
-                    <code className="text-ink font-medium">{item.cmd}</code>
+            <article className="feature-cell border-border flex flex-col justify-between border-r border-b p-6 sm:p-7">
+              <div>
+                <div className="border-border bg-bg-subtle mb-6 rounded-lg border p-4 font-mono text-xs">
+                  <div className="text-fg-subtle mb-2 flex items-center justify-between text-[11px]">
+                    <span>src/app</span>
+                    <span className="text-accent-blue">RSC</span>
                   </div>
-                  <span className="text-ink-muted font-sans text-xs">
-                    {item.desc}
-                  </span>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span>layout.tsx</span>
+                      <span className="text-fg-subtle">Geist</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>page.tsx</span>
+                      <span className="text-fg-subtle">Static</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>globals.css</span>
+                      <span className="text-fg-subtle">@theme</span>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </article>
+
+                <h3 className="text-base font-semibold tracking-[-0.02em]">
+                  Next.js 16 &amp; React 19
+                </h3>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  App Router with Server Components by default, Turbopack
+                  builds, and typed configuration in{' '}
+                  <code className="text-fg font-mono text-xs">
+                    next.config.ts
+                  </code>
+                  .
+                </p>
+              </div>
+            </article>
+
+            <article className="feature-cell border-border flex flex-col justify-between border-r border-b p-6 sm:p-7">
+              <div>
+                <div className="border-border bg-bg-subtle mb-6 rounded-lg border p-4 font-mono text-xs">
+                  <div className="text-fg-subtle mb-2 flex items-center justify-between text-[11px]">
+                    <span>eslint.config.mjs</span>
+                    <span>Flat</span>
+                  </div>
+                  <div className="text-fg-muted space-y-1">
+                    <div>
+                      <span className="text-fg">eslint</span> 10.15.0
+                    </div>
+                    <div>
+                      <span className="text-fg">prettier</span> 3.10.1
+                    </div>
+                    <div>
+                      <span className="text-fg">@ialexanderbrito</span> v3.0
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-base font-semibold tracking-[-0.02em]">
+                  ESLint 10 &amp; Prettier 3
+                </h3>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  Native ESLint 10 Flat Config synced directly with{' '}
+                  <code className="text-fg font-mono text-xs">
+                    prettier.config.mjs
+                  </code>{' '}
+                  for zero formatting or import-order conflicts.
+                </p>
+              </div>
+            </article>
+
+            <article className="feature-cell border-border flex flex-col justify-between border-r border-b p-6 sm:p-7">
+              <div>
+                <div className="border-border bg-bg-subtle mb-6 rounded-lg border p-4 font-mono text-xs">
+                  <div className="text-fg-subtle mb-2 flex items-center justify-between text-[11px]">
+                    <span>postcss.config.mjs</span>
+                    <span>v4</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="text-fg">
+                      @import &apos;tailwindcss&apos;;
+                    </div>
+                    <div className="text-fg-muted">
+                      @theme inline &#123; ... &#125;
+                    </div>
+                    <div className="text-fg-subtle">tsconfig strict: true</div>
+                  </div>
+                </div>
+
+                <h3 className="text-base font-semibold tracking-[-0.02em]">
+                  Tailwind v4 &amp; TypeScript 6
+                </h3>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  CSS-first styling via{' '}
+                  <code className="text-fg font-mono text-xs">
+                    @tailwindcss/postcss
+                  </code>{' '}
+                  paired with strict TypeScript 6 and{' '}
+                  <code className="text-fg font-mono text-xs">@/*</code>{' '}
+                  aliases.
+                </p>
+              </div>
+            </article>
+
+            <article
+              id="agents"
+              className="feature-cell border-border flex scroll-mt-20 flex-col justify-between border-r border-b p-6 sm:p-7"
+            >
+              <div>
+                <div className="border-border bg-bg-subtle mb-6 space-y-2 rounded-lg border p-4 font-mono text-xs">
+                  {agentFiles.map((item) => (
+                    <div
+                      key={item.path}
+                      className="flex items-center justify-between gap-2"
+                    >
+                      <span className="text-fg">{item.path}</span>
+                      <span className="text-fg-subtle text-[11px]">
+                        {item.scope}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <h3 className="text-base font-semibold tracking-[-0.02em]">
+                  Universal AI Agents
+                </h3>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  Open{' '}
+                  <code className="text-fg font-mono text-xs">AGENTS.md</code>{' '}
+                  and{' '}
+                  <code className="text-fg font-mono text-xs">
+                    .agents/skills/
+                  </code>{' '}
+                  setup ready for Antigravity, Claude Code, Cursor, OpenCode,
+                  Codex, Grok, and Copilot.
+                </p>
+              </div>
+            </article>
+
+            <article className="feature-cell border-border flex flex-col justify-between border-r border-b p-6 sm:p-7">
+              <div>
+                <div className="border-border bg-bg-subtle mb-6 rounded-lg border p-4 font-mono text-xs">
+                  <div className="text-fg-subtle mb-2 flex items-center justify-between text-[11px]">
+                    <span>.github/workflows/ci.yml</span>
+                    <span>v7</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span>validate</span>
+                      <span className="text-fg-subtle">parallel</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>build (.next/cache)</span>
+                      <span className="text-fg-subtle">parallel</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>semantic-release</span>
+                      <span className="text-fg-subtle">master</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-base font-semibold tracking-[-0.02em]">
+                  Git Hooks &amp; CI/CD
+                </h3>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  Husky v9, lint-staged, Commitlint, Commitizen, and
+                  least-privilege GitHub Actions with automatic Semantic
+                  Release.
+                </p>
+              </div>
+            </article>
+
+            <article
+              id="scripts"
+              className="feature-cell border-border flex scroll-mt-20 flex-col justify-between border-r border-b p-6 sm:p-7"
+            >
+              <div>
+                <div className="border-border bg-bg-subtle mb-6 space-y-2 rounded-lg border p-4 font-mono text-xs">
+                  {scripts.map((item) => (
+                    <div
+                      key={item.cmd}
+                      className="flex items-center justify-between gap-2"
+                    >
+                      <span className="text-fg">
+                        <span className="text-fg-subtle mr-1.5 select-none">
+                          $
+                        </span>
+                        {item.cmd}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <h3 className="text-base font-semibold tracking-[-0.02em]">
+                  Essential Scripts
+                </h3>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  Run{' '}
+                  <code className="text-fg font-mono text-xs">
+                    yarn validate
+                  </code>{' '}
+                  to verify types, lint, and formatting in a single command
+                  before pushing.
+                </p>
+              </div>
+            </article>
+          </div>
         </section>
       </main>
 
       <footer className="border-border border-t">
-        <div className="text-ink-muted mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 py-8 text-xs sm:flex-row">
-          <p className="font-mono">boilerplate-next · MIT License</p>
-          <div className="flex items-center gap-5">
+        <div className="text-fg-muted mx-auto flex max-w-[1080px] flex-col items-center justify-between gap-4 px-6 py-8 text-xs sm:flex-row">
+          <div className="flex items-center gap-3">
+            <span className="text-fg font-mono font-medium">
+              boilerplate-next
+            </span>
+            <span className="text-border-strong">|</span>
+            <span>MIT License</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-5">
             <a
               href="https://www.npmjs.com/package/@ialexanderbrito/eslint-config"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-ink transition-colors"
+              className="hover:text-fg transition-colors"
             >
               @ialexanderbrito/eslint-config
             </a>
@@ -354,9 +434,17 @@ export default function Home() {
               href="https://agents.md"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-ink transition-colors"
+              className="hover:text-fg transition-colors"
             >
-              AGENTS.md Spec
+              AGENTS.md
+            </a>
+            <a
+              href="https://github.com/alx-ui/boilerplate-next"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-fg transition-colors"
+            >
+              GitHub
             </a>
           </div>
         </div>

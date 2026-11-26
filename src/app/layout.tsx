@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 
 import type { Metadata } from 'next';
 
@@ -16,13 +16,6 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  weight: '400',
-  style: ['normal', 'italic'],
-  variable: '--font-editorial-serif',
-});
-
 export const metadata: Metadata = {
   title: 'boilerplate-next — Next.js 16 TypeScript Starter',
   description:
@@ -35,10 +28,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
-    >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );
